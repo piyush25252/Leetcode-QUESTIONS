@@ -1,0 +1,33 @@
+#Longest Common prefix
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        mx=""
+        for i in range (len(strs)):
+            if (len(strs[i])>len(mx)):
+                mx=strs[i]
+        a=mx
+        flag=1
+        j=0
+        p=''
+        f=0
+        while(len(p)!=len(a)):
+            p=p+a[j]
+            c=0
+            for i in range (len(strs)):
+                if (p in strs[i] and (p[j]==strs[i][j])):
+                    c=c+1
+            if (c==len(strs)):
+                f=1
+                j=j+1
+                continue
+            elif(c!=len(strs) or p==a):
+                p=p[::-1]
+                p=p.replace(a[j],"",1)
+                p=p[::-1]
+                break
+        if (f==1 ):
+            return p
+        else :
+            return ""           
+       
